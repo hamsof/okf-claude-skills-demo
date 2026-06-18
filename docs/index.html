@@ -1,0 +1,115 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OKF skills site</title><style>
+:root{--bg:#0d1117;--fg:#c9d1d9;--mut:#8b949e;--acc:#58a6ff;--card:#161b22;--bd:#30363d;--idx:#d29922;--ref:#3fb950}
+*{box-sizing:border-box}body{margin:0;font:15px/1.6 -apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg)}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:860px;margin:0 auto;padding:24px}
+.crumb{color:var(--mut);font-size:13px;margin-bottom:8px}
+.badge{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.04em}
+.badge.index{background:rgba(210,153,34,.15);color:var(--idx)}.badge.reference{background:rgba(63,185,80,.15);color:var(--ref)}
+.chips{margin:10px 0 18px}.chip{display:inline-block;font-size:12px;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:2px 9px;margin:2px 4px 2px 0;color:var(--mut);cursor:pointer}
+.chip:hover{color:var(--acc);border-color:var(--acc)}
+hr{border:0;border-top:1px solid var(--bd);margin:20px 0}
+table{border-collapse:collapse;width:100%;margin:14px 0}th,td{border:1px solid var(--bd);padding:6px 10px;text-align:left}th{background:var(--card)}
+pre{background:var(--card);border:1px solid var(--bd);padding:12px;border-radius:6px;overflow:auto}code{background:var(--card);padding:1px 5px;border-radius:4px}pre code{background:none;padding:0}
+h1,h2,h3{line-height:1.25}h1{font-size:26px}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.controls input,.controls select{background:var(--card);border:1px solid var(--bd);color:var(--fg);padding:7px 10px;border-radius:6px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:14px;margin:10px 0}
+.card h3{margin:0 0 4px}.card .meta{font-size:12px;color:var(--mut);margin-bottom:6px}
+.tagcloud{margin:8px 0 4px}
+</style></head><body><div class="wrap">
+<h1>Skills</h1>
+<div class="meta">12 docs · 50 tags · OKF bundle</div>
+<div class="controls">
+  <input id="q" placeholder="search title…">
+  <select id="type"><option value="">all types</option><option value="index">index</option><option value="reference">reference</option></select>
+  <button id="clear" class="chip">clear tag</button>
+</div>
+<div class="tagcloud"><a class="chip" href="?tag=aggregation">#aggregation</a><a class="chip" href="?tag=authoring">#authoring</a><a class="chip" href="?tag=cart">#cart</a><a class="chip" href="?tag=catalog">#catalog</a><a class="chip" href="?tag=checklist">#checklist</a><a class="chip" href="?tag=checkout">#checkout</a><a class="chip" href="?tag=convention">#convention</a><a class="chip" href="?tag=create">#create</a><a class="chip" href="?tag=cross-folder">#cross-folder</a><a class="chip" href="?tag=cross-linking">#cross-linking</a><a class="chip" href="?tag=discovery">#discovery</a><a class="chip" href="?tag=file">#file</a><a class="chip" href="?tag=folder">#folder</a><a class="chip" href="?tag=frontmatter">#frontmatter</a><a class="chip" href="?tag=gate">#gate</a><a class="chip" href="?tag=graph">#graph</a><a class="chip" href="?tag=index">#index</a><a class="chip" href="?tag=invoice">#invoice</a><a class="chip" href="?tag=layout">#layout</a><a class="chip" href="?tag=leaf">#leaf</a><a class="chip" href="?tag=links">#links</a><a class="chip" href="?tag=meta">#meta</a><a class="chip" href="?tag=nested">#nested</a><a class="chip" href="?tag=nesting">#nesting</a><a class="chip" href="?tag=new-skill">#new-skill</a><a class="chip" href="?tag=okf">#okf</a><a class="chip" href="?tag=pos">#pos</a><a class="chip" href="?tag=pricing">#pricing</a><a class="chip" href="?tag=product">#product</a><a class="chip" href="?tag=reports">#reports</a><a class="chip" href="?tag=resource">#resource</a><a class="chip" href="?tag=revenue">#revenue</a><a class="chip" href="?tag=review">#review</a><a class="chip" href="?tag=sales">#sales</a><a class="chip" href="?tag=sales-by-invoice">#sales-by-invoice</a><a class="chip" href="?tag=sales-by-product">#sales-by-product</a><a class="chip" href="?tag=schema">#schema</a><a class="chip" href="?tag=see-also">#see-also</a><a class="chip" href="?tag=skill">#skill</a><a class="chip" href="?tag=sku">#sku</a><a class="chip" href="?tag=steps">#steps</a><a class="chip" href="?tag=structure">#structure</a><a class="chip" href="?tag=sub-skill">#sub-skill</a><a class="chip" href="?tag=tags">#tags</a><a class="chip" href="?tag=timestamp">#timestamp</a><a class="chip" href="?tag=total">#total</a><a class="chip" href="?tag=type">#type</a><a class="chip" href="?tag=validation">#validation</a><a class="chip" href="?tag=workflow">#workflow</a><a class="chip" href="?tag=yaml">#yaml</a></div>
+<div id="list">
+<div class="card" data-type="reference" data-tags="pos catalog product sku pricing" data-title="pos — product catalog">
+  <h3><a href="pos-flow/catalog.html">POS — product catalog</a></h3>
+  <div class="meta"><span class="badge reference">reference</span> &nbsp; pos-flow/catalog.html</div>
+  
+  <div><span class="chip">#pos</span><span class="chip">#catalog</span><span class="chip">#product</span><span class="chip">#sku</span><span class="chip">#pricing</span></div>
+</div>
+<div class="card" data-type="reference" data-tags="pos checkout invoice total cart" data-title="pos — checkout (cart → invoice)">
+  <h3><a href="pos-flow/checkout.html">POS — checkout (cart → invoice)</a></h3>
+  <div class="meta"><span class="badge reference">reference</span> &nbsp; pos-flow/checkout.html</div>
+  
+  <div><span class="chip">#pos</span><span class="chip">#checkout</span><span class="chip">#invoice</span><span class="chip">#total</span><span class="chip">#cart</span></div>
+</div>
+<div class="card" data-type="index" data-tags="pos checkout catalog invoice cart" data-title="pos flow">
+  <h3><a href="pos-flow/SKILL.html">POS flow</a></h3>
+  <div class="meta"><span class="badge index">index</span> &nbsp; pos-flow/SKILL.html</div>
+  <div>Architecture reference for the sample POS checkout flow (OKF bundle). Read before changing the catalog or checkout logic.</div>
+  <div><span class="chip">#pos</span><span class="chip">#checkout</span><span class="chip">#catalog</span><span class="chip">#invoice</span><span class="chip">#cart</span></div>
+</div>
+<div class="card" data-type="reference" data-tags="reports sales-by-invoice invoice total" data-title="sale by invoice">
+  <h3><a href="reports/sales-by-invoice.html">Sale by Invoice</a></h3>
+  <div class="meta"><span class="badge reference">reference</span> &nbsp; reports/sales-by-invoice.html</div>
+  
+  <div><span class="chip">#reports</span><span class="chip">#sales-by-invoice</span><span class="chip">#invoice</span><span class="chip">#total</span></div>
+</div>
+<div class="card" data-type="reference" data-tags="reports sales-by-product revenue aggregation sku" data-title="sale by product">
+  <h3><a href="reports/sales-by-product.html">Sale by Product</a></h3>
+  <div class="meta"><span class="badge reference">reference</span> &nbsp; reports/sales-by-product.html</div>
+  
+  <div><span class="chip">#reports</span><span class="chip">#sales-by-product</span><span class="chip">#revenue</span><span class="chip">#aggregation</span><span class="chip">#sku</span></div>
+</div>
+<div class="card" data-type="index" data-tags="reports sales aggregation revenue invoice" data-title="reports">
+  <h3><a href="reports/SKILL.html">Reports</a></h3>
+  <div class="meta"><span class="badge index">index</span> &nbsp; reports/SKILL.html</div>
+  <div>Reference for the sample POS reports (OKF bundle). Read before changing how sales are aggregated.</div>
+  <div><span class="chip">#reports</span><span class="chip">#sales</span><span class="chip">#aggregation</span><span class="chip">#revenue</span><span class="chip">#invoice</span></div>
+</div>
+<div class="card" data-type="reference" data-tags="workflow steps create new-skill sub-skill leaf" data-title="authoring workflow">
+  <h3><a href="skill-authoring/authoring-workflow.html">Authoring workflow</a></h3>
+  <div class="meta"><span class="badge reference">reference</span> &nbsp; skill-authoring/authoring-workflow.html</div>
+  
+  <div><span class="chip">#workflow</span><span class="chip">#steps</span><span class="chip">#create</span><span class="chip">#new-skill</span><span class="chip">#sub-skill</span><span class="chip">#leaf</span></div>
+</div>
+<div class="card" data-type="reference" data-tags="checklist gate review validation" data-title="pre-commit checklist">
+  <h3><a href="skill-authoring/checklist.html">Pre-commit checklist</a></h3>
+  <div class="meta"><span class="badge reference">reference</span> &nbsp; skill-authoring/checklist.html</div>
+  
+  <div><span class="chip">#checklist</span><span class="chip">#gate</span><span class="chip">#review</span><span class="chip">#validation</span></div>
+</div>
+<div class="card" data-type="reference" data-tags="links graph see-also nested cross-folder discovery" data-title="cross-linking &amp; the knowledge graph">
+  <h3><a href="skill-authoring/cross-linking.html">Cross-linking &amp; the knowledge graph</a></h3>
+  <div class="meta"><span class="badge reference">reference</span> &nbsp; skill-authoring/cross-linking.html</div>
+  
+  <div><span class="chip">#links</span><span class="chip">#graph</span><span class="chip">#see-also</span><span class="chip">#nested</span><span class="chip">#cross-folder</span><span class="chip">#discovery</span></div>
+</div>
+<div class="card" data-type="reference" data-tags="frontmatter schema type tags resource timestamp yaml" data-title="okf frontmatter spec">
+  <h3><a href="skill-authoring/frontmatter-spec.html">OKF frontmatter spec</a></h3>
+  <div class="meta"><span class="badge reference">reference</span> &nbsp; skill-authoring/frontmatter-spec.html</div>
+  
+  <div><span class="chip">#frontmatter</span><span class="chip">#schema</span><span class="chip">#type</span><span class="chip">#tags</span><span class="chip">#resource</span><span class="chip">#timestamp</span><span class="chip">#yaml</span></div>
+</div>
+<div class="card" data-type="index" data-tags="skill authoring okf frontmatter index cross-linking convention meta" data-title="skill authoring (okf)">
+  <h3><a href="skill-authoring/SKILL.html">Skill Authoring (OKF)</a></h3>
+  <div class="meta"><span class="badge index">index</span> &nbsp; skill-authoring/SKILL.html</div>
+  <div>How to author a new skill using OKF (Open Knowledge Format) plus an index-router convention. Read this BEFORE creating or restructuring any skill, sub-skill, or knowledge doc.</div>
+  <div><span class="chip">#skill</span><span class="chip">#authoring</span><span class="chip">#okf</span><span class="chip">#frontmatter</span><span class="chip">#index</span><span class="chip">#cross-linking</span><span class="chip">#convention</span><span class="chip">#meta</span></div>
+</div>
+<div class="card" data-type="reference" data-tags="structure layout nesting index folder file" data-title="skill structure &amp; layout">
+  <h3><a href="skill-authoring/structure.html">Skill structure &amp; layout</a></h3>
+  <div class="meta"><span class="badge reference">reference</span> &nbsp; skill-authoring/structure.html</div>
+  
+  <div><span class="chip">#structure</span><span class="chip">#layout</span><span class="chip">#nesting</span><span class="chip">#index</span><span class="chip">#folder</span><span class="chip">#file</span></div>
+</div></div>
+</div><script>
+const params=new URLSearchParams(location.search);let tag=params.get('tag')||'';
+const q=document.getElementById('q'),tsel=document.getElementById('type');tsel.value=params.get('type')||'';
+function apply(){const term=q.value.toLowerCase(),ty=tsel.value;
+ document.querySelectorAll('.card').forEach(c=>{
+  const okTag=!tag||c.dataset.tags.split(' ').includes(tag);
+  const okTy=!ty||c.dataset.type===ty;
+  const okQ=!term||c.dataset.title.includes(term);
+  c.style.display=(okTag&&okTy&&okQ)?'':'none';});}
+q.oninput=apply;tsel.onchange=apply;
+document.getElementById('clear').onclick=()=>{tag='';history.replaceState({},'',location.pathname);apply();};
+apply();
+</script></body></html>

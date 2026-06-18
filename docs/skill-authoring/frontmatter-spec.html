@@ -1,0 +1,130 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OKF frontmatter spec</title><style>
+:root{--bg:#0d1117;--fg:#c9d1d9;--mut:#8b949e;--acc:#58a6ff;--card:#161b22;--bd:#30363d;--idx:#d29922;--ref:#3fb950}
+*{box-sizing:border-box}body{margin:0;font:15px/1.6 -apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg)}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:860px;margin:0 auto;padding:24px}
+.crumb{color:var(--mut);font-size:13px;margin-bottom:8px}
+.badge{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.04em}
+.badge.index{background:rgba(210,153,34,.15);color:var(--idx)}.badge.reference{background:rgba(63,185,80,.15);color:var(--ref)}
+.chips{margin:10px 0 18px}.chip{display:inline-block;font-size:12px;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:2px 9px;margin:2px 4px 2px 0;color:var(--mut);cursor:pointer}
+.chip:hover{color:var(--acc);border-color:var(--acc)}
+hr{border:0;border-top:1px solid var(--bd);margin:20px 0}
+table{border-collapse:collapse;width:100%;margin:14px 0}th,td{border:1px solid var(--bd);padding:6px 10px;text-align:left}th{background:var(--card)}
+pre{background:var(--card);border:1px solid var(--bd);padding:12px;border-radius:6px;overflow:auto}code{background:var(--card);padding:1px 5px;border-radius:4px}pre code{background:none;padding:0}
+h1,h2,h3{line-height:1.25}h1{font-size:26px}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.controls input,.controls select{background:var(--card);border:1px solid var(--bd);color:var(--fg);padding:7px 10px;border-radius:6px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:14px;margin:10px 0}
+.card h3{margin:0 0 4px}.card .meta{font-size:12px;color:var(--mut);margin-bottom:6px}
+.tagcloud{margin:8px 0 4px}
+</style></head>
+<body><div class="wrap"><div class="crumb"><a href="../index.html">skills</a></div>
+<span class="badge reference">reference</span>
+<h1>OKF frontmatter spec</h1>
+<div class="chips"><a class="chip" href="../index.html?tag=frontmatter">#frontmatter</a><a class="chip" href="../index.html?tag=schema">#schema</a><a class="chip" href="../index.html?tag=type">#type</a><a class="chip" href="../index.html?tag=tags">#tags</a><a class="chip" href="../index.html?tag=resource">#resource</a><a class="chip" href="../index.html?tag=timestamp">#timestamp</a><a class="chip" href="../index.html?tag=yaml">#yaml</a></div><hr><h1>OKF frontmatter spec</h1>
+<p>Every markdown file in a skill bundle starts with a YAML frontmatter block. This is the
+OKF schema, narrowed to what a skills folder needs.</p>
+<h2>Two file roles</h2>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th><code>type</code></th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Router</td>
+<td><code>index</code></td>
+<td>The <code>SKILL.md</code> of a skill or sub-skill. Lists + routes to children.</td>
+</tr>
+<tr>
+<td>Leaf</td>
+<td><code>reference</code></td>
+<td>One concept / topic. The actual knowledge.</td>
+</tr>
+</tbody>
+</table>
+<p>No other <code>type</code> values.</p>
+<h2>Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required on</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>index</code> only</td>
+<td>skill slug (kebab).</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>index</code> only</td>
+<td>what the skill is for — the text an agent matches intent against.</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><strong>all</strong></td>
+<td><code>index</code> or <code>reference</code>.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td><strong>all</strong></td>
+<td>human-readable title.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td><strong>all</strong></td>
+<td>kebab-case keyword list — the search surface for routing.</td>
+</tr>
+<tr>
+<td><code>resource</code></td>
+<td>optional</td>
+<td>repo path(s) or URL the doc maps to.</td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td><strong>all</strong></td>
+<td>ISO-8601, last meaningful update.</td>
+</tr>
+</tbody>
+</table>
+<h2>Index frontmatter (<a href="http://SKILL.html">SKILL.md</a>)</h2>
+<pre><code class="language-yaml">---
+name: pos-flow
+description: Architecture reference for the sample POS checkout flow (OKF bundle).
+type: index
+title: POS flow
+tags: [pos, checkout, catalog, invoice, cart]
+timestamp: 2026-06-18T00:00:00Z
+---
+</code></pre>
+<h2>Reference frontmatter (leaf .md)</h2>
+<pre><code class="language-yaml">---
+type: reference
+title: POS — checkout (cart → invoice)
+tags: [pos, checkout, invoice, total, cart]
+resource: src/pos.ts
+timestamp: 2026-06-18T00:00:00Z
+---
+</code></pre>
+<h2>Tag rules</h2>
+<ul>
+<li>kebab-case, lowercase, no spaces</li>
+<li>include domain + subject + any cross-domain hook</li>
+<li>tags are how the model finds the right child — be generous but precise</li>
+<li>an index's <code>tags</code> should be the union of its children's themes</li>
+</ul>
+<h2>Why frontmatter on leaves too</h2>
+<p>An agent host only reads <code>SKILL.md</code> to register a skill; it ignores extra fields and never
+parses leaf frontmatter. Leaf frontmatter exists for the <strong>model</strong> (routing by <code>tags</code>),
+for the <a href="checklist.html">checklist.md</a>, and for tools like the HTML site builder. It is cheap
+and enables the graph search that solves nested-skill discovery — see
+<a href="cross-linking.html">cross-linking.md</a>.</p>
+</div></body></html>

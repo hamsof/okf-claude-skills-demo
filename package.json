@@ -1,0 +1,14 @@
+{
+  "name": "okf-claude-skills-demo",
+  "version": "1.0.0",
+  "description": "A tiny sample POS + reports used to demonstrate OKF-formatted Claude skills and a static HTML site built from them.",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-strip-types src/index.ts",
+    "build:site": "node tools/build-html.mjs"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "markdown-it": "^14.2.0"
+  }
+}

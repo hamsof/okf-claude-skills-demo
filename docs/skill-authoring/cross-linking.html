@@ -1,0 +1,75 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cross-linking &amp; the knowledge graph</title><style>
+:root{--bg:#0d1117;--fg:#c9d1d9;--mut:#8b949e;--acc:#58a6ff;--card:#161b22;--bd:#30363d;--idx:#d29922;--ref:#3fb950}
+*{box-sizing:border-box}body{margin:0;font:15px/1.6 -apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg)}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:860px;margin:0 auto;padding:24px}
+.crumb{color:var(--mut);font-size:13px;margin-bottom:8px}
+.badge{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.04em}
+.badge.index{background:rgba(210,153,34,.15);color:var(--idx)}.badge.reference{background:rgba(63,185,80,.15);color:var(--ref)}
+.chips{margin:10px 0 18px}.chip{display:inline-block;font-size:12px;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:2px 9px;margin:2px 4px 2px 0;color:var(--mut);cursor:pointer}
+.chip:hover{color:var(--acc);border-color:var(--acc)}
+hr{border:0;border-top:1px solid var(--bd);margin:20px 0}
+table{border-collapse:collapse;width:100%;margin:14px 0}th,td{border:1px solid var(--bd);padding:6px 10px;text-align:left}th{background:var(--card)}
+pre{background:var(--card);border:1px solid var(--bd);padding:12px;border-radius:6px;overflow:auto}code{background:var(--card);padding:1px 5px;border-radius:4px}pre code{background:none;padding:0}
+h1,h2,h3{line-height:1.25}h1{font-size:26px}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.controls input,.controls select{background:var(--card);border:1px solid var(--bd);color:var(--fg);padding:7px 10px;border-radius:6px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:14px;margin:10px 0}
+.card h3{margin:0 0 4px}.card .meta{font-size:12px;color:var(--mut);margin-bottom:6px}
+.tagcloud{margin:8px 0 4px}
+</style></head>
+<body><div class="wrap"><div class="crumb"><a href="../index.html">skills</a></div>
+<span class="badge reference">reference</span>
+<h1>Cross-linking &amp; the knowledge graph</h1>
+<div class="chips"><a class="chip" href="../index.html?tag=links">#links</a><a class="chip" href="../index.html?tag=graph">#graph</a><a class="chip" href="../index.html?tag=see-also">#see-also</a><a class="chip" href="../index.html?tag=nested">#nested</a><a class="chip" href="../index.html?tag=cross-folder">#cross-folder</a><a class="chip" href="../index.html?tag=discovery">#discovery</a></div><hr><h1>Cross-linking &amp; the knowledge graph</h1>
+<p>This is the part that solves nested-skill discovery. OKF docs link to each other via
+markdown links, forming a graph. The model follows links — including links into <em>other</em>
+skill folders — so deeply-nested knowledge reaches it without you naming the nested skill.</p>
+<h2>Link styles</h2>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Form</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Within a folder</td>
+<td>relative file</td>
+<td><code>[checkout.md](checkout.md)</code></td>
+</tr>
+<tr>
+<td>Into a child folder</td>
+<td>relative path down</td>
+<td><code>[setup](server/setup.md)</code></td>
+</tr>
+<tr>
+<td>Into a sibling skill</td>
+<td>relative path up+over</td>
+<td><code>[Sale by Product](../reports/sales-by-product.md)</code></td>
+</tr>
+</tbody>
+</table>
+<p>Always use <strong>relative paths</strong> so links survive being moved, mirrored, or rendered to HTML.</p>
+<h2>The both-ways rule</h2>
+<blockquote>
+<p>If knowledge in folder A is needed while reading folder B, link both ways.</p>
+</blockquote>
+<p>Example: the reports depend on the checkout invoice shape. So
+<code>reports/sales-by-product.md</code> links to <code>../pos-flow/checkout.md</code>, and
+<code>pos-flow/checkout.md</code> links back to the reports. Arriving from either side, the model can
+pull the other.</p>
+<h2><code>See also</code> block</h2>
+<p>End a leaf with an explicit block when it has cross-domain dependencies:</p>
+<pre><code class="language-markdown">## See also
+- [../pos-flow/checkout.md](../pos-flow/checkout.md) — where the Invoice shape is built
+</code></pre>
+<h2>What this does NOT change</h2>
+<p>It does not change an agent host's autocomplete. Discovery moves into the model: it reads
+an index, matches <code>tags</code>, and walks links across folders. The graph is the search index;
+the model is the search engine. A static site builder can walk the same links to produce a
+browsable HTML version of the graph.</p>
+</div></body></html>

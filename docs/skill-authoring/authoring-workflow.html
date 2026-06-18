@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Authoring workflow</title><style>
+:root{--bg:#0d1117;--fg:#c9d1d9;--mut:#8b949e;--acc:#58a6ff;--card:#161b22;--bd:#30363d;--idx:#d29922;--ref:#3fb950}
+*{box-sizing:border-box}body{margin:0;font:15px/1.6 -apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg)}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:860px;margin:0 auto;padding:24px}
+.crumb{color:var(--mut);font-size:13px;margin-bottom:8px}
+.badge{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.04em}
+.badge.index{background:rgba(210,153,34,.15);color:var(--idx)}.badge.reference{background:rgba(63,185,80,.15);color:var(--ref)}
+.chips{margin:10px 0 18px}.chip{display:inline-block;font-size:12px;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:2px 9px;margin:2px 4px 2px 0;color:var(--mut);cursor:pointer}
+.chip:hover{color:var(--acc);border-color:var(--acc)}
+hr{border:0;border-top:1px solid var(--bd);margin:20px 0}
+table{border-collapse:collapse;width:100%;margin:14px 0}th,td{border:1px solid var(--bd);padding:6px 10px;text-align:left}th{background:var(--card)}
+pre{background:var(--card);border:1px solid var(--bd);padding:12px;border-radius:6px;overflow:auto}code{background:var(--card);padding:1px 5px;border-radius:4px}pre code{background:none;padding:0}
+h1,h2,h3{line-height:1.25}h1{font-size:26px}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.controls input,.controls select{background:var(--card);border:1px solid var(--bd);color:var(--fg);padding:7px 10px;border-radius:6px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:14px;margin:10px 0}
+.card h3{margin:0 0 4px}.card .meta{font-size:12px;color:var(--mut);margin-bottom:6px}
+.tagcloud{margin:8px 0 4px}
+</style></head>
+<body><div class="wrap"><div class="crumb"><a href="../index.html">skills</a></div>
+<span class="badge reference">reference</span>
+<h1>Authoring workflow</h1>
+<div class="chips"><a class="chip" href="../index.html?tag=workflow">#workflow</a><a class="chip" href="../index.html?tag=steps">#steps</a><a class="chip" href="../index.html?tag=create">#create</a><a class="chip" href="../index.html?tag=new-skill">#new-skill</a><a class="chip" href="../index.html?tag=sub-skill">#sub-skill</a><a class="chip" href="../index.html?tag=leaf">#leaf</a></div><hr><h1>Authoring workflow</h1>
+<p>Step-by-step flows. Schema is in <a href="frontmatter-spec.html">frontmatter-spec.md</a>; layout in
+<a href="structure.html">structure.md</a>; links in <a href="cross-linking.html">cross-linking.md</a>. Every flow
+ends at <a href="checklist.html">checklist.md</a>.</p>
+<h2>A. New top-level skill</h2>
+<ol>
+<li><code>mkdir skills/&lt;slug&gt;/</code></li>
+<li>Create <code>SKILL.md</code> with <code>index</code> frontmatter — <code>name</code>, keyword-rich <code>description</code>,
+<code>type: index</code>, <code>title</code>, <code>tags</code>, <code>timestamp</code>.</li>
+<li>Write the index body: purpose + &quot;when to apply&quot; + an <strong>Index</strong> table.</li>
+<li>Add the first leaf doc(s) — see flow C.</li>
+<li>Cross-link to/from related existing skills (both-ways rule).</li>
+<li>Run <a href="checklist.html">checklist.md</a>.</li>
+</ol>
+<h2>B. New nested sub-skill</h2>
+<ol>
+<li><code>mkdir &lt;parent&gt;/&lt;child-slug&gt;/</code> and add a <code>SKILL.md</code> (<code>type: index</code>).</li>
+<li>Add the child to the <strong>parent</strong> index table with a relative link + tags.</li>
+<li>Add leaf docs under the child (flow C).</li>
+<li>Cross-link to siblings where dependencies exist.</li>
+<li>Run <a href="checklist.html">checklist.md</a>.</li>
+</ol>
+<h2>C. New leaf doc</h2>
+<ol>
+<li>Create <code>&lt;concept&gt;.md</code> with <code>reference</code> frontmatter — <code>type</code>, <code>title</code>, <code>tags</code>, optional
+<code>resource</code>, <code>timestamp</code>.</li>
+<li>Write the content — one concept, self-documenting.</li>
+<li>Add a row to that folder's <code>SKILL.md</code> index table.</li>
+<li>If it depends on another folder, add <code>See also</code> links both ways.</li>
+<li>Run <a href="checklist.html">checklist.md</a>.</li>
+</ol>
+</div></body></html>

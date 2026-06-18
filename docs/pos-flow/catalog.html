@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>POS — product catalog</title><style>
+:root{--bg:#0d1117;--fg:#c9d1d9;--mut:#8b949e;--acc:#58a6ff;--card:#161b22;--bd:#30363d;--idx:#d29922;--ref:#3fb950}
+*{box-sizing:border-box}body{margin:0;font:15px/1.6 -apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg)}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:860px;margin:0 auto;padding:24px}
+.crumb{color:var(--mut);font-size:13px;margin-bottom:8px}
+.badge{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.04em}
+.badge.index{background:rgba(210,153,34,.15);color:var(--idx)}.badge.reference{background:rgba(63,185,80,.15);color:var(--ref)}
+.chips{margin:10px 0 18px}.chip{display:inline-block;font-size:12px;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:2px 9px;margin:2px 4px 2px 0;color:var(--mut);cursor:pointer}
+.chip:hover{color:var(--acc);border-color:var(--acc)}
+hr{border:0;border-top:1px solid var(--bd);margin:20px 0}
+table{border-collapse:collapse;width:100%;margin:14px 0}th,td{border:1px solid var(--bd);padding:6px 10px;text-align:left}th{background:var(--card)}
+pre{background:var(--card);border:1px solid var(--bd);padding:12px;border-radius:6px;overflow:auto}code{background:var(--card);padding:1px 5px;border-radius:4px}pre code{background:none;padding:0}
+h1,h2,h3{line-height:1.25}h1{font-size:26px}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.controls input,.controls select{background:var(--card);border:1px solid var(--bd);color:var(--fg);padding:7px 10px;border-radius:6px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:14px;margin:10px 0}
+.card h3{margin:0 0 4px}.card .meta{font-size:12px;color:var(--mut);margin-bottom:6px}
+.tagcloud{margin:8px 0 4px}
+</style></head>
+<body><div class="wrap"><div class="crumb"><a href="../index.html">skills</a></div>
+<span class="badge reference">reference</span>
+<h1>POS — product catalog</h1>
+<div class="chips"><a class="chip" href="../index.html?tag=pos">#pos</a><a class="chip" href="../index.html?tag=catalog">#catalog</a><a class="chip" href="../index.html?tag=product">#product</a><a class="chip" href="../index.html?tag=sku">#sku</a><a class="chip" href="../index.html?tag=pricing">#pricing</a></div><hr><h1>Product catalog</h1>
+<p>The catalog is a hard-coded array of <code>Product</code> in <code>src/pos.ts</code> (a real system would load
+this from a database).</p>
+<pre><code class="language-ts">interface Product { sku: string; name: string; price: number; }
+</code></pre>
+<p><code>findProduct(sku)</code> looks a product up by SKU and <strong>throws</strong> on an unknown SKU — checkout
+relies on that to reject bad cart lines early.</p>
+<h2>See also</h2>
+<ul>
+<li><a href="checkout.html">checkout.md</a> — consumes <code>findProduct</code> to build invoice lines</li>
+</ul>
+</div></body></html>
