@@ -132,7 +132,9 @@ case "$fp" in "$SRC"/*) ;; *) exit 0 ;; esac   # only on skill edits
 node "$ROOT/tools/build-html.mjs"
 ```
 
-Because both the hook and `.claude/settings.json` are checked into the repo, anyone who clones it gets auto-rebuilds for free. Edit a skill, the site rebuilds itself.
+Because both the hook and `.claude/settings.json` are checked into the repo, anyone who clones it gets auto-rebuilds for free.
+
+**You never touch `docs/` by hand.** It's generated output, not a source of truth. You edit a skill under `.claude/skills/`, and the hook regenerates the matching HTML in `docs/` automatically — the website always reflects the latest skills without a manual build step.
 
 > 📸 **Screenshot placeholder #3** — the landing page with a tag filter applied (e.g. clicking `#checkout`). _Replace with your capture._
 
