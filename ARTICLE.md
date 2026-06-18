@@ -1,6 +1,6 @@
-# Cutting Claude's Token Bill with Google's Open Knowledge Format
+# Cut Your Claude Code Bill: Organize Skills with Google's OKF
 
-*How I turned a pile of architecture notes into Claude skills that load only what's needed — and got a browsable docs site for free.*
+*Turn scattered architecture notes into OKF skills Claude loads on demand — and get a browsable docs site for free.*
 
 ---
 
