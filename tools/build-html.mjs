@@ -2,10 +2,11 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync, rmSync }
 import { join, dirname, relative, sep } from 'node:path';
 import MarkdownIt from 'markdown-it';
 
-// Renders the OKF skill bundle (skills/**.md) into a browsable static site (docs/).
+// Renders the OKF skill bundle (.claude/skills/**.md) into a browsable static site (docs/).
+// Source lives in .claude/skills so the bundles also work as Claude Code slash-command skills.
 // GitHub Pages serves docs/ on the main branch.
 const ROOT = join(import.meta.dirname, '..');
-const SRC = join(ROOT, 'skills');
+const SRC = join(ROOT, '.claude', 'skills');
 const OUT = join(ROOT, 'docs');
 
 const md = new MarkdownIt({ html: true, linkify: true });

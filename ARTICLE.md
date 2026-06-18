@@ -112,10 +112,27 @@ Because OKF is "just files with frontmatter," rendering it to a website is a tin
 5. emits a landing page that's **filterable by tag and type**
 
 ```bash
-node tools/build-html.mjs   # → docs/
+node tools/build-html.mjs   # .claude/skills/ → docs/
 ```
 
 The same files Claude reads as skills become a docs site my teammates can browse. One source of truth, two consumers.
+
+### Make them real slash commands
+
+I keep the bundles in `.claude/skills/`, not a plain `skills/` folder. That one detail means Claude Code loads them as **invocable skills** — `/pos-flow`, `/reports`, `/skill-authoring` — in any session opened on the repo. The markdown *is* the skill; no extra registration.
+
+### Never let the site drift
+
+The risk with two consumers is that the HTML falls behind the markdown. I close that gap with a committed `PostToolUse` hook — the same trick I use elsewhere. `.claude/settings.json` runs a small script whenever a skill file is edited:
+
+```bash
+# .claude/hooks/rebuild-site.sh (abridged)
+fp="$(… read file_path from the hook's stdin JSON …)"
+case "$fp" in "$SRC"/*) ;; *) exit 0 ;; esac   # only on skill edits
+node "$ROOT/tools/build-html.mjs"
+```
+
+Because both the hook and `.claude/settings.json` are checked into the repo, anyone who clones it gets auto-rebuilds for free. Edit a skill, the site rebuilds itself.
 
 > 📸 **Screenshot placeholder #3** — the landing page with a tag filter applied (e.g. clicking `#checkout`). _Replace with your capture._
 
@@ -126,7 +143,7 @@ Everything in this article is a real, public sample repo:
 - **Repo:** https://github.com/hamsof/okf-claude-skills-demo
 - **Rendered skills site:** https://hamsof.github.io/okf-claude-skills-demo/
 
-It's a deliberately tiny POS (a catalog, a `checkout()`, two reports) — just enough real code to document. The interesting parts are `skills/` and `tools/build-html.mjs`.
+It's a deliberately tiny POS (a catalog, a `checkout()`, two reports) — just enough real code to document. The interesting parts are `.claude/skills/`, `tools/build-html.mjs`, and the auto-rebuild hook in `.claude/hooks/`.
 
 ## Takeaways
 
