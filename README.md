@@ -42,4 +42,4 @@ that re-runs the build whenever a file under `.claude/skills/` is written — so
 drifts from the skills. Both the hook and its settings are committed, so anyone who clones
 the repo gets the same behavior. Run it manually any time with `bash .claude/hooks/rebuild-site.sh --full`.
 
-This repo accompanies an article on cutting Claude token usage by extending Google's Open Knowledge Format. See [`ARTICLE.md`](ARTICLE.md).
+This repo accompanies the article **[Reducing LLM token consumption by organising skills with Google's OKF](https://medium.com/@hafizabdulman/reducing-llm-token-consumption-by-organising-skills-with-googles-okf-ee7089701d16)**.
