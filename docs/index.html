@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>OKF skills site</title><style>
+<title>OKF skills wiki</title><style>
 :root{--bg:#0d1117;--fg:#c9d1d9;--mut:#8b949e;--acc:#58a6ff;--card:#161b22;--bd:#30363d;--idx:#d29922;--ref:#3fb950}
 *{box-sizing:border-box}body{margin:0;font:15px/1.6 -apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--fg)}
 a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
@@ -13,20 +13,36 @@ a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
 hr{border:0;border-top:1px solid var(--bd);margin:20px 0}
 table{border-collapse:collapse;width:100%;margin:14px 0}th,td{border:1px solid var(--bd);padding:6px 10px;text-align:left}th{background:var(--card)}
 pre{background:var(--card);border:1px solid var(--bd);padding:12px;border-radius:6px;overflow:auto}code{background:var(--card);padding:1px 5px;border-radius:4px}pre code{background:none;padding:0}
+pre.mermaid{background:#fff;text-align:center;line-height:normal}
 h1,h2,h3{line-height:1.25}h1{font-size:26px}
 .controls{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.controls input,.controls select{background:var(--card);border:1px solid var(--bd);color:var(--fg);padding:7px 10px;border-radius:6px}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:14px;margin:10px 0}
 .card h3{margin:0 0 4px}.card .meta{font-size:12px;color:var(--mut);margin-bottom:6px}
 .tagcloud{margin:8px 0 4px}
+.graphwrap{margin:18px 0}.graphwrap .meta{font-size:12px;color:var(--mut);margin-bottom:6px}
+#graph{position:relative;width:100%;height:480px;border:1px solid var(--bd);border-radius:12px;overflow:hidden;
+  background:radial-gradient(120% 120% at 50% 35%,#131c2b 0%,#0d1117 70%)}
+#graph svg{width:100%;height:100%;cursor:grab;display:block}
+#graph svg:active{cursor:grabbing}
+#graph .hint{position:absolute;top:10px;right:12px;font-size:11px;color:var(--mut);pointer-events:none;opacity:.7}
+.gnode circle{stroke:#0d1117;stroke-width:1.5px;cursor:pointer;transition:opacity .2s}
+.gnode circle:hover{stroke:#fff}
+.gnode text{fill:var(--mut);font-size:10px;pointer-events:none;transition:opacity .2s,fill .2s}
+.glink{stroke:#30363d;stroke-opacity:.55;transition:stroke .2s,stroke-opacity .2s}
+.dim{opacity:.08}
 </style></head><body><div class="wrap">
 <h1>Skills</h1>
-<div class="meta">12 docs · 50 tags · OKF bundle</div>
+<div class="meta">13 docs · 57 tags · OKF bundle</div>
 <div class="controls">
   <input id="q" placeholder="search title…">
   <select id="type"><option value="">all types</option><option value="index">index</option><option value="reference">reference</option></select>
   <button id="clear" class="chip">clear tag</button>
 </div>
-<div class="tagcloud"><a class="chip" href="?tag=aggregation">#aggregation</a><a class="chip" href="?tag=authoring">#authoring</a><a class="chip" href="?tag=cart">#cart</a><a class="chip" href="?tag=catalog">#catalog</a><a class="chip" href="?tag=checklist">#checklist</a><a class="chip" href="?tag=checkout">#checkout</a><a class="chip" href="?tag=convention">#convention</a><a class="chip" href="?tag=create">#create</a><a class="chip" href="?tag=cross-folder">#cross-folder</a><a class="chip" href="?tag=cross-linking">#cross-linking</a><a class="chip" href="?tag=discovery">#discovery</a><a class="chip" href="?tag=file">#file</a><a class="chip" href="?tag=folder">#folder</a><a class="chip" href="?tag=frontmatter">#frontmatter</a><a class="chip" href="?tag=gate">#gate</a><a class="chip" href="?tag=graph">#graph</a><a class="chip" href="?tag=index">#index</a><a class="chip" href="?tag=invoice">#invoice</a><a class="chip" href="?tag=layout">#layout</a><a class="chip" href="?tag=leaf">#leaf</a><a class="chip" href="?tag=links">#links</a><a class="chip" href="?tag=meta">#meta</a><a class="chip" href="?tag=nested">#nested</a><a class="chip" href="?tag=nesting">#nesting</a><a class="chip" href="?tag=new-skill">#new-skill</a><a class="chip" href="?tag=okf">#okf</a><a class="chip" href="?tag=pos">#pos</a><a class="chip" href="?tag=pricing">#pricing</a><a class="chip" href="?tag=product">#product</a><a class="chip" href="?tag=reports">#reports</a><a class="chip" href="?tag=resource">#resource</a><a class="chip" href="?tag=revenue">#revenue</a><a class="chip" href="?tag=review">#review</a><a class="chip" href="?tag=sales">#sales</a><a class="chip" href="?tag=sales-by-invoice">#sales-by-invoice</a><a class="chip" href="?tag=sales-by-product">#sales-by-product</a><a class="chip" href="?tag=schema">#schema</a><a class="chip" href="?tag=see-also">#see-also</a><a class="chip" href="?tag=skill">#skill</a><a class="chip" href="?tag=sku">#sku</a><a class="chip" href="?tag=steps">#steps</a><a class="chip" href="?tag=structure">#structure</a><a class="chip" href="?tag=sub-skill">#sub-skill</a><a class="chip" href="?tag=tags">#tags</a><a class="chip" href="?tag=timestamp">#timestamp</a><a class="chip" href="?tag=total">#total</a><a class="chip" href="?tag=type">#type</a><a class="chip" href="?tag=validation">#validation</a><a class="chip" href="?tag=workflow">#workflow</a><a class="chip" href="?tag=yaml">#yaml</a></div>
+<div class="graphwrap">
+  <div class="meta">knowledge graph · 31 links · drag to explore, scroll to zoom, click a node to open</div>
+  <div id="graph"><div class="hint">hover to focus · click to open</div></div>
+</div>
+<div class="tagcloud"><a class="chip" href="?tag=aggregation">#aggregation</a><a class="chip" href="?tag=authoring">#authoring</a><a class="chip" href="?tag=cart">#cart</a><a class="chip" href="?tag=catalog">#catalog</a><a class="chip" href="?tag=checklist">#checklist</a><a class="chip" href="?tag=checkout">#checkout</a><a class="chip" href="?tag=convention">#convention</a><a class="chip" href="?tag=create">#create</a><a class="chip" href="?tag=cross-folder">#cross-folder</a><a class="chip" href="?tag=cross-linking">#cross-linking</a><a class="chip" href="?tag=dark-theme">#dark-theme</a><a class="chip" href="?tag=diagrams">#diagrams</a><a class="chip" href="?tag=discovery">#discovery</a><a class="chip" href="?tag=file">#file</a><a class="chip" href="?tag=flowchart">#flowchart</a><a class="chip" href="?tag=folder">#folder</a><a class="chip" href="?tag=frontmatter">#frontmatter</a><a class="chip" href="?tag=gate">#gate</a><a class="chip" href="?tag=graph">#graph</a><a class="chip" href="?tag=index">#index</a><a class="chip" href="?tag=invoice">#invoice</a><a class="chip" href="?tag=layout">#layout</a><a class="chip" href="?tag=leaf">#leaf</a><a class="chip" href="?tag=links">#links</a><a class="chip" href="?tag=mermaid">#mermaid</a><a class="chip" href="?tag=meta">#meta</a><a class="chip" href="?tag=nested">#nested</a><a class="chip" href="?tag=nesting">#nesting</a><a class="chip" href="?tag=new-skill">#new-skill</a><a class="chip" href="?tag=okf">#okf</a><a class="chip" href="?tag=pos">#pos</a><a class="chip" href="?tag=pricing">#pricing</a><a class="chip" href="?tag=product">#product</a><a class="chip" href="?tag=readability">#readability</a><a class="chip" href="?tag=reports">#reports</a><a class="chip" href="?tag=resource">#resource</a><a class="chip" href="?tag=revenue">#revenue</a><a class="chip" href="?tag=review">#review</a><a class="chip" href="?tag=sales">#sales</a><a class="chip" href="?tag=sales-by-invoice">#sales-by-invoice</a><a class="chip" href="?tag=sales-by-product">#sales-by-product</a><a class="chip" href="?tag=schema">#schema</a><a class="chip" href="?tag=see-also">#see-also</a><a class="chip" href="?tag=sequence">#sequence</a><a class="chip" href="?tag=skill">#skill</a><a class="chip" href="?tag=sku">#sku</a><a class="chip" href="?tag=steps">#steps</a><a class="chip" href="?tag=structure">#structure</a><a class="chip" href="?tag=sub-skill">#sub-skill</a><a class="chip" href="?tag=tags">#tags</a><a class="chip" href="?tag=timestamp">#timestamp</a><a class="chip" href="?tag=total">#total</a><a class="chip" href="?tag=type">#type</a><a class="chip" href="?tag=validation">#validation</a><a class="chip" href="?tag=visual">#visual</a><a class="chip" href="?tag=workflow">#workflow</a><a class="chip" href="?tag=yaml">#yaml</a></div>
 <div id="list">
 <div class="card" data-type="reference" data-tags="pos catalog product sku pricing" data-title="pos — product catalog">
   <h3><a href="pos-flow/catalog.html">POS — product catalog</a></h3>
@@ -82,6 +98,12 @@ h1,h2,h3{line-height:1.25}h1{font-size:26px}
   
   <div><span class="chip">#links</span><span class="chip">#graph</span><span class="chip">#see-also</span><span class="chip">#nested</span><span class="chip">#cross-folder</span><span class="chip">#discovery</span></div>
 </div>
+<div class="card" data-type="reference" data-tags="diagrams mermaid sequence flowchart visual readability dark-theme" data-title="diagrams in skills (mermaid)">
+  <h3><a href="skill-authoring/diagrams.html">Diagrams in skills (mermaid)</a></h3>
+  <div class="meta"><span class="badge reference">reference</span> &nbsp; skill-authoring/diagrams.html</div>
+  
+  <div><span class="chip">#diagrams</span><span class="chip">#mermaid</span><span class="chip">#sequence</span><span class="chip">#flowchart</span><span class="chip">#visual</span><span class="chip">#readability</span><span class="chip">#dark-theme</span></div>
+</div>
 <div class="card" data-type="reference" data-tags="frontmatter schema type tags resource timestamp yaml" data-title="okf frontmatter spec">
   <h3><a href="skill-authoring/frontmatter-spec.html">OKF frontmatter spec</a></h3>
   <div class="meta"><span class="badge reference">reference</span> &nbsp; skill-authoring/frontmatter-spec.html</div>
@@ -100,7 +122,45 @@ h1,h2,h3{line-height:1.25}h1{font-size:26px}
   
   <div><span class="chip">#structure</span><span class="chip">#layout</span><span class="chip">#nesting</span><span class="chip">#index</span><span class="chip">#folder</span><span class="chip">#file</span></div>
 </div></div>
-</div><script>
+</div>
+<script type="module">
+import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7/+esm';
+const data={"nodes":[{"id":"pos-flow/catalog.html","title":"POS — product catalog","type":"reference","deg":3},{"id":"pos-flow/checkout.html","title":"POS — checkout (cart → invoice)","type":"reference","deg":9},{"id":"pos-flow/SKILL.html","title":"POS flow","type":"index","deg":2},{"id":"reports/sales-by-invoice.html","title":"Sale by Invoice","type":"reference","deg":5},{"id":"reports/sales-by-product.html","title":"Sale by Product","type":"reference","deg":6},{"id":"reports/SKILL.html","title":"Reports","type":"index","deg":3},{"id":"skill-authoring/authoring-workflow.html","title":"Authoring workflow","type":"reference","deg":5},{"id":"skill-authoring/checklist.html","title":"Pre-commit checklist","type":"reference","deg":4},{"id":"skill-authoring/cross-linking.html","title":"Cross-linking & the knowledge graph","type":"reference","deg":5},{"id":"skill-authoring/diagrams.html","title":"Diagrams in skills (mermaid)","type":"reference","deg":4},{"id":"skill-authoring/frontmatter-spec.html","title":"OKF frontmatter spec","type":"reference","deg":5},{"id":"skill-authoring/SKILL.html","title":"Skill Authoring (OKF)","type":"index","deg":7},{"id":"skill-authoring/structure.html","title":"Skill structure & layout","type":"reference","deg":4}],"links":[{"source":"pos-flow/catalog.html","target":"pos-flow/checkout.html"},{"source":"pos-flow/checkout.html","target":"pos-flow/catalog.html"},{"source":"pos-flow/checkout.html","target":"reports/sales-by-product.html"},{"source":"pos-flow/checkout.html","target":"reports/sales-by-invoice.html"},{"source":"pos-flow/SKILL.html","target":"pos-flow/catalog.html"},{"source":"pos-flow/SKILL.html","target":"pos-flow/checkout.html"},{"source":"reports/sales-by-invoice.html","target":"pos-flow/checkout.html"},{"source":"reports/sales-by-invoice.html","target":"reports/sales-by-product.html"},{"source":"reports/sales-by-product.html","target":"pos-flow/checkout.html"},{"source":"reports/sales-by-product.html","target":"reports/sales-by-invoice.html"},{"source":"reports/SKILL.html","target":"pos-flow/checkout.html"},{"source":"reports/SKILL.html","target":"reports/sales-by-product.html"},{"source":"reports/SKILL.html","target":"reports/sales-by-invoice.html"},{"source":"skill-authoring/authoring-workflow.html","target":"skill-authoring/frontmatter-spec.html"},{"source":"skill-authoring/authoring-workflow.html","target":"skill-authoring/structure.html"},{"source":"skill-authoring/authoring-workflow.html","target":"skill-authoring/cross-linking.html"},{"source":"skill-authoring/authoring-workflow.html","target":"skill-authoring/checklist.html"},{"source":"skill-authoring/cross-linking.html","target":"reports/sales-by-product.html"},{"source":"skill-authoring/cross-linking.html","target":"pos-flow/checkout.html"},{"source":"skill-authoring/diagrams.html","target":"skill-authoring/SKILL.html"},{"source":"skill-authoring/diagrams.html","target":"skill-authoring/structure.html"},{"source":"skill-authoring/diagrams.html","target":"skill-authoring/checklist.html"},{"source":"skill-authoring/frontmatter-spec.html","target":"skill-authoring/checklist.html"},{"source":"skill-authoring/frontmatter-spec.html","target":"skill-authoring/cross-linking.html"},{"source":"skill-authoring/SKILL.html","target":"skill-authoring/frontmatter-spec.html"},{"source":"skill-authoring/SKILL.html","target":"skill-authoring/structure.html"},{"source":"skill-authoring/SKILL.html","target":"skill-authoring/cross-linking.html"},{"source":"skill-authoring/SKILL.html","target":"skill-authoring/authoring-workflow.html"},{"source":"skill-authoring/SKILL.html","target":"skill-authoring/diagrams.html"},{"source":"skill-authoring/SKILL.html","target":"skill-authoring/checklist.html"},{"source":"skill-authoring/structure.html","target":"skill-authoring/frontmatter-spec.html"}]};
+const el=document.getElementById('graph');
+const W=el.clientWidth,H=el.clientHeight;
+const color={index:'#d29922',reference:'#3fb950'};
+const svg=d3.select('#graph').append('svg').attr('viewBox',[0,0,W,H]);
+const root=svg.append('g');
+svg.call(d3.zoom().scaleExtent([0.3,3]).on('zoom',(e)=>root.attr('transform',e.transform)));
+const neighbors=new Map(data.nodes.map(n=>[n.id,new Set([n.id])]));
+data.links.forEach(l=>{neighbors.get(l.source).add(l.target);neighbors.get(l.target).add(l.source);});
+const sim=d3.forceSimulation(data.nodes)
+  .force('link',d3.forceLink(data.links).id(d=>d.id).distance(90).strength(.35))
+  .force('charge',d3.forceManyBody().strength(-260))
+  .force('center',d3.forceCenter(W/2,H/2))
+  .force('collide',d3.forceCollide(d=>14+d.deg*1.6));
+const link=root.append('g').selectAll('line').data(data.links).join('line').attr('class','glink');
+const node=root.append('g').selectAll('g').data(data.nodes).join('g').attr('class','gnode')
+  .call(d3.drag()
+    .on('start',(e,d)=>{if(!e.active)sim.alphaTarget(.3).restart();d.fx=d.x;d.fy=d.y;})
+    .on('drag',(e,d)=>{d.fx=e.x;d.fy=e.y;})
+    .on('end',(e,d)=>{if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null;}));
+node.append('circle').attr('r',d=>5+d.deg*1.6).attr('fill',d=>color[d.type]||'#58a6ff')
+  .on('click',(e,d)=>{location.href=d.id;});
+node.append('text').attr('x',d=>7+d.deg*1.6).attr('y',3).text(d=>d.title);
+node.append('title').text(d=>d.title);
+node.on('mouseenter',(e,d)=>{
+  const nb=neighbors.get(d.id);
+  node.classed('dim',n=>!nb.has(n.id));
+  link.classed('dim',l=>l.source.id!==d.id&&l.target.id!==d.id)
+      .attr('stroke',l=>(l.source.id===d.id||l.target.id===d.id)?'#58a6ff':null);
+}).on('mouseleave',()=>{node.classed('dim',false);link.classed('dim',false).attr('stroke',null);});
+sim.on('tick',()=>{
+  link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+  node.attr('transform',d=>`translate(${d.x},${d.y})`);
+});
+</script>
+<script>
 const params=new URLSearchParams(location.search);let tag=params.get('tag')||'';
 const q=document.getElementById('q'),tsel=document.getElementById('type');tsel.value=params.get('type')||'';
 function apply(){const term=q.value.toLowerCase(),ty=tsel.value;

@@ -1,7 +1,7 @@
 {
-  "name": "okf-claude-skills-demo",
-  "version": "1.0.0",
-  "description": "A tiny sample POS + reports used to demonstrate OKF-formatted Claude skills and a static HTML site built from them.",
+  "name": "okf-skills-wiki",
+  "version": "1.1.0",
+  "description": "Turn a folder of OKF-formatted Claude skills into a browsable wiki with tag search, mermaid diagrams, and an interactive knowledge graph.",
   "type": "module",
   "scripts": {
     "start": "node --experimental-strip-types src/index.ts",
