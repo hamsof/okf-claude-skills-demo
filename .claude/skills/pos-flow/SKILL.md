@@ -13,9 +13,9 @@ How a sale becomes an invoice in this sample POS. All code in `src/pos.ts`.
 
 ```mermaid
 flowchart LR
-    Cart["cart<br/>{sku, qty}[]"] --> CO["checkout()"]
+    Cart["cart (sku, qty)[]"] --> CO["checkout()"]
     Cat[("catalog")] -->|findProduct| CO
-    CO --> Inv["Invoice<br/>{number, items, total}"]
+    CO --> Inv["Invoice (number, items, total)"]
     Inv --> RP["salesByProduct"]
     Inv --> RI["salesByInvoice"]
 ```
