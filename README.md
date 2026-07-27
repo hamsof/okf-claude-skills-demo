@@ -46,8 +46,10 @@ Every `.md` needs OKF frontmatter (`type`, `title`, `tags`); see
 - **Tag + type filtering** — search titles, filter by `#tag` or `index`/`reference`.
 - **Mermaid diagrams** — ` ```mermaid ` fences render natively (same as GitHub).
 - **Knowledge graph** — a D3 force-directed graph on the index, built from the `.md` links
-  between docs. Drag to explore, scroll to zoom, hover to focus a node's neighbours, click a
-  node to open it. Node colour = `index` (gold) / `reference` (green); size = link count.
+  between docs. Drag to explore, scroll to zoom, hover to focus a node's neighbours (labels
+  appear on hover to keep it uncluttered), click a node to open it. Hit **⤢ expand** for a
+  fullscreen view (Esc to close) — handy once the graph gets busy. Node colour = `index`
+  (gold) / `reference` (green); size = link count.
 - **Auto-rebuild on edit** — `.claude/settings.json` registers a `PostToolUse` hook
   (`.claude/hooks/rebuild-site.sh`) that re-runs the build whenever a file under
   `.claude/skills/` is written, so `docs/` never drifts. Run manually with

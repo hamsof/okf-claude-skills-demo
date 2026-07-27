@@ -70,15 +70,20 @@ h1,h2,h3{line-height:1.25}h1{font-size:26px}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:14px;margin:10px 0}
 .card h3{margin:0 0 4px}.card .meta{font-size:12px;color:var(--mut);margin-bottom:6px}
 .tagcloud{margin:8px 0 4px}
-.graphwrap{margin:18px 0}.graphwrap .meta{font-size:12px;color:var(--mut);margin-bottom:6px}
+.graphwrap{margin:18px 0}.graphwrap .meta{font-size:12px;color:var(--mut)}
+.graphwrap .bar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+#graph-expand{cursor:pointer;white-space:nowrap}
 #graph{position:relative;width:100%;height:480px;border:1px solid var(--bd);border-radius:12px;overflow:hidden;
   background:radial-gradient(120% 120% at 50% 35%,#131c2b 0%,#0d1117 70%)}
+#graph.full{position:fixed;inset:0;width:100vw;height:100vh;border-radius:0;z-index:1000}
 #graph svg{width:100%;height:100%;cursor:grab;display:block}
 #graph svg:active{cursor:grabbing}
 #graph .hint{position:absolute;top:10px;right:12px;font-size:11px;color:var(--mut);pointer-events:none;opacity:.7}
 .gnode circle{stroke:#0d1117;stroke-width:1.5px;cursor:pointer;transition:opacity .2s}
 .gnode circle:hover{stroke:#fff}
-.gnode text{fill:var(--mut);font-size:10px;pointer-events:none;transition:opacity .2s,fill .2s}
+.gnode text{fill:var(--mut);font-size:10px;pointer-events:none;opacity:0;transition:opacity .2s,fill .2s}
+.gnode.show text{opacity:1}
+#graph.full .gnode text{opacity:.85}
 .glink{stroke:#30363d;stroke-opacity:.55;transition:stroke .2s,stroke-opacity .2s}
 .dim{opacity:.08}
 `;
@@ -160,7 +165,10 @@ writeFileSync(join(OUT, 'index.html'), `<!doctype html><html lang="en"><head>
   <button id="clear" class="chip">clear tag</button>
 </div>
 <div class="graphwrap">
-  <div class="meta">knowledge graph · ${edges.length} links · drag to explore, scroll to zoom, click a node to open</div>
+  <div class="bar">
+    <div class="meta">knowledge graph · ${edges.length} links · drag to explore, scroll to zoom, click a node to open</div>
+    <button id="graph-expand" class="chip">⤢ expand</button>
+  </div>
   <div id="graph"><div class="hint">hover to focus · click to open</div></div>
 </div>
 <div class="tagcloud">${cloud}</div>
@@ -170,18 +178,18 @@ writeFileSync(join(OUT, 'index.html'), `<!doctype html><html lang="en"><head>
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7/+esm';
 const data=${JSON.stringify(graphData)};
 const el=document.getElementById('graph');
-const W=el.clientWidth,H=el.clientHeight;
 const color={index:'#d29922',reference:'#3fb950'};
-const svg=d3.select('#graph').append('svg').attr('viewBox',[0,0,W,H]);
+const short=(s)=>s.length>34?s.slice(0,33)+'…':s;
+const svg=d3.select('#graph').append('svg');
 const root=svg.append('g');
-svg.call(d3.zoom().scaleExtent([0.3,3]).on('zoom',(e)=>root.attr('transform',e.transform)));
+svg.call(d3.zoom().scaleExtent([0.2,4]).on('zoom',(e)=>root.attr('transform',e.transform)));
 const neighbors=new Map(data.nodes.map(n=>[n.id,new Set([n.id])]));
 data.links.forEach(l=>{neighbors.get(l.source).add(l.target);neighbors.get(l.target).add(l.source);});
 const sim=d3.forceSimulation(data.nodes)
-  .force('link',d3.forceLink(data.links).id(d=>d.id).distance(90).strength(.35))
-  .force('charge',d3.forceManyBody().strength(-260))
-  .force('center',d3.forceCenter(W/2,H/2))
-  .force('collide',d3.forceCollide(d=>14+d.deg*1.6));
+  .force('link',d3.forceLink(data.links).id(d=>d.id).distance(90).strength(.3))
+  .force('charge',d3.forceManyBody().strength(-320))
+  .force('center',d3.forceCenter(0,0))
+  .force('collide',d3.forceCollide(d=>16+d.deg*1.6));
 const link=root.append('g').selectAll('line').data(data.links).join('line').attr('class','glink');
 const node=root.append('g').selectAll('g').data(data.nodes).join('g').attr('class','gnode')
   .call(d3.drag()
@@ -190,18 +198,26 @@ const node=root.append('g').selectAll('g').data(data.nodes).join('g').attr('clas
     .on('end',(e,d)=>{if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null;}));
 node.append('circle').attr('r',d=>5+d.deg*1.6).attr('fill',d=>color[d.type]||'#58a6ff')
   .on('click',(e,d)=>{location.href=d.id;});
-node.append('text').attr('x',d=>7+d.deg*1.6).attr('y',3).text(d=>d.title);
+node.append('text').attr('x',d=>7+d.deg*1.6).attr('y',3).text(d=>short(d.title));
 node.append('title').text(d=>d.title);
 node.on('mouseenter',(e,d)=>{
   const nb=neighbors.get(d.id);
-  node.classed('dim',n=>!nb.has(n.id));
+  node.classed('dim',n=>!nb.has(n.id)).classed('show',n=>nb.has(n.id));
   link.classed('dim',l=>l.source.id!==d.id&&l.target.id!==d.id)
       .attr('stroke',l=>(l.source.id===d.id||l.target.id===d.id)?'#58a6ff':null);
-}).on('mouseleave',()=>{node.classed('dim',false);link.classed('dim',false).attr('stroke',null);});
+}).on('mouseleave',()=>{node.classed('dim',false).classed('show',false);link.classed('dim',false).attr('stroke',null);});
 sim.on('tick',()=>{
   link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
   node.attr('transform',d=>\`translate(\${d.x},\${d.y})\`);
 });
+// keep the viewBox centred on the layout origin at the container's current size
+function fit(){const W=el.clientWidth,H=el.clientHeight;svg.attr('viewBox',[-W/2,-H/2,W,H]);sim.alpha(.5).restart();}
+fit();
+window.addEventListener('resize',fit);
+const btn=document.getElementById('graph-expand');
+function toggle(){const full=el.classList.toggle('full');btn.textContent=full?'⤡ close':'⤢ expand';requestAnimationFrame(fit);}
+btn.addEventListener('click',toggle);
+document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&el.classList.contains('full'))toggle();});
 </script>
 <script>
 const params=new URLSearchParams(location.search);let tag=params.get('tag')||'';
