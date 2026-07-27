@@ -18,20 +18,20 @@ timestamp: 2026-06-18T00:00:00Z
 ```mermaid
 sequenceDiagram
     participant Caller
-    participant CO as checkout()
-    participant Cat as findProduct()
+    participant CO as checkout
+    participant Cat as findProduct
 
     Caller->>CO: checkout(items, n)
-    loop each {sku, qty}
+    loop each cart line
         CO->>Cat: findProduct(sku)
         alt known SKU
             Cat-->>CO: Product
-            CO->>CO: line = price * qty; total += line
+            CO->>CO: line = price x qty, add to total
         else unknown SKU
             Cat-->>CO: throw
         end
     end
-    CO-->>Caller: Invoice {number: "INV-n", items, total}
+    CO-->>Caller: Invoice INV-n
 ```
 
 ```ts
