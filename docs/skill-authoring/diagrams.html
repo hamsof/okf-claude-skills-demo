@@ -92,6 +92,10 @@ deprecated) in the note text.</li>
 one theme.</li>
 <li>Prefer short participant aliases (<code>participant Q1 as SQS: app-install</code>) over long raw
 names that overflow the lane.</li>
+<li><strong>Keep message text plain.</strong> In <code>sequenceDiagram</code> messages, characters like <code>{ } &quot; ; *</code>
+break the parser (<code>Syntax error in text</code>). Describe the payload in words
+(<code>Invoice INV-n</code>) instead of pasting a type literal (<code>{number: &quot;INV-n&quot;, ...}</code>). In
+flowchart node labels, wrap the text in quotes and avoid braces there too.</li>
 </ul>
 <h2>Example (status-annotated sequence)</h2>
 <pre class="mermaid">sequenceDiagram

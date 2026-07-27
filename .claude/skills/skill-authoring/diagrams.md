@@ -48,6 +48,10 @@ enum spec, a checklist) don't need one. When in doubt and the doc has arrows-in-
   one theme.
 - Prefer short participant aliases (`participant Q1 as SQS: app-install`) over long raw
   names that overflow the lane.
+- **Keep message text plain.** In `sequenceDiagram` messages, characters like `{ } " ; *`
+  break the parser (`Syntax error in text`). Describe the payload in words
+  (`Invoice INV-n`) instead of pasting a type literal (`{number: "INV-n", ...}`). In
+  flowchart node labels, wrap the text in quotes and avoid braces there too.
 
 ## Example (status-annotated sequence)
 
