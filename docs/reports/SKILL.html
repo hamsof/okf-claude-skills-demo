@@ -37,7 +37,12 @@ h1,h2,h3{line-height:1.25}h1{font-size:26px}
 <div class="chips"><a class="chip" href="../index.html?tag=reports">#reports</a><a class="chip" href="../index.html?tag=sales">#sales</a><a class="chip" href="../index.html?tag=aggregation">#aggregation</a><a class="chip" href="../index.html?tag=revenue">#revenue</a><a class="chip" href="../index.html?tag=invoice">#invoice</a></div><hr><h1>Reports</h1>
 <p>Two read-side reports over the invoices produced by checkout. All code in <code>src/reports.ts</code>.
 Both take <code>Invoice[]</code> — see <a href="../pos-flow/checkout.html">../pos-flow/checkout.md</a> for that shape.</p>
-<h2>When to apply</h2>
+<pre class="mermaid">flowchart LR
+    Inv[&quot;Invoice[]&quot;] --&gt; P[&quot;salesByProduct&lt;br/&gt;(group by SKU)&quot;]
+    Inv --&gt; I[&quot;salesByInvoice&lt;br/&gt;(one row / invoice)&quot;]
+    P --&gt; PR[&quot;rows sorted by&lt;br/&gt;revenue desc&quot;]
+    I --&gt; IR[&quot;display rows&quot;]
+</pre><h2>When to apply</h2>
 <p>Read before changing aggregation logic, adding a report, or debugging a number that
 disagrees with raw invoices.</p>
 <h2>Index</h2>

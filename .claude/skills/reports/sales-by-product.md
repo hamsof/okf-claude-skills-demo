@@ -19,6 +19,14 @@ timestamp: 2026-06-18T00:00:00Z
 Rows are returned sorted by `revenue` descending. The aggregation walks
 `invoice.items` — so it depends entirely on the invoice shape from checkout.
 
+```mermaid
+flowchart LR
+    A["Invoice[]"] --> B["flatten<br/>invoice.items"]
+    B --> C["group by SKU<br/>sum qty + revenue"]
+    C --> D["sort by<br/>revenue desc"]
+    D --> E["rows:<br/>{name, qty, revenue}"]
+```
+
 ## See also
 - [../pos-flow/checkout.md](../pos-flow/checkout.md) — where `Invoice` (and its `items`) is built
 - [sales-by-invoice.md](sales-by-invoice.md) — the other report over the same data

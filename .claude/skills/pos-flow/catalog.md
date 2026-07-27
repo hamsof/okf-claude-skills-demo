@@ -18,5 +18,12 @@ interface Product { sku: string; name: string; price: number; }
 `findProduct(sku)` looks a product up by SKU and **throws** on an unknown SKU — checkout
 relies on that to reject bad cart lines early.
 
+```mermaid
+flowchart TD
+    A["findProduct(sku)"] --> B{"sku in catalog?"}
+    B -->|yes| C["return Product"]
+    B -->|no| D["throw — checkout rejects the cart line"]
+```
+
 ## See also
 - [checkout.md](checkout.md) — consumes `findProduct` to build invoice lines

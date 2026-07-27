@@ -60,7 +60,12 @@ h1,h2,h3{line-height:1.25}h1{font-size:26px}
 </table>
 <p>Rows are returned sorted by <code>revenue</code> descending. The aggregation walks
 <code>invoice.items</code> — so it depends entirely on the invoice shape from checkout.</p>
-<h2>See also</h2>
+<pre class="mermaid">flowchart LR
+    A[&quot;Invoice[]&quot;] --&gt; B[&quot;flatten&lt;br/&gt;invoice.items&quot;]
+    B --&gt; C[&quot;group by SKU&lt;br/&gt;sum qty + revenue&quot;]
+    C --&gt; D[&quot;sort by&lt;br/&gt;revenue desc&quot;]
+    D --&gt; E[&quot;rows:&lt;br/&gt;{name, qty, revenue}&quot;]
+</pre><h2>See also</h2>
 <ul>
 <li><a href="../pos-flow/checkout.html">../pos-flow/checkout.md</a> — where <code>Invoice</code> (and its <code>items</code>) is built</li>
 <li><a href="sales-by-invoice.html">sales-by-invoice.md</a> — the other report over the same data</li>

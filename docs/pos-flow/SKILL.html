@@ -36,7 +36,13 @@ h1,h2,h3{line-height:1.25}h1{font-size:26px}
 <h1>POS flow</h1>
 <div class="chips"><a class="chip" href="../index.html?tag=pos">#pos</a><a class="chip" href="../index.html?tag=checkout">#checkout</a><a class="chip" href="../index.html?tag=catalog">#catalog</a><a class="chip" href="../index.html?tag=invoice">#invoice</a><a class="chip" href="../index.html?tag=cart">#cart</a></div><hr><h1>POS flow</h1>
 <p>How a sale becomes an invoice in this sample POS. All code in <code>src/pos.ts</code>.</p>
-<h2>When to apply</h2>
+<pre class="mermaid">flowchart LR
+    Cart[&quot;cart&lt;br/&gt;{sku, qty}[]&quot;] --&gt; CO[&quot;checkout()&quot;]
+    Cat[(&quot;catalog&quot;)] --&gt;|findProduct| CO
+    CO --&gt; Inv[&quot;Invoice&lt;br/&gt;{number, items, total}&quot;]
+    Inv --&gt; RP[&quot;salesByProduct&quot;]
+    Inv --&gt; RI[&quot;salesByInvoice&quot;]
+</pre><h2>When to apply</h2>
 <p>Read before touching the product catalog, pricing, or the <code>checkout()</code> function — or
 when a report's numbers look wrong and you need to know how invoices are shaped.</p>
 <h2>Index</h2>

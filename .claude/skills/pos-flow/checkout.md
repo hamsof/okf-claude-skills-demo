@@ -15,6 +15,25 @@ timestamp: 2026-06-18T00:00:00Z
 3. invoice `total` = sum of line values
 4. invoice number = `INV-<n>`
 
+```mermaid
+sequenceDiagram
+    participant Caller
+    participant CO as checkout()
+    participant Cat as findProduct()
+
+    Caller->>CO: checkout(items, n)
+    loop each {sku, qty}
+        CO->>Cat: findProduct(sku)
+        alt known SKU
+            Cat-->>CO: Product
+            CO->>CO: line = price * qty; total += line
+        else unknown SKU
+            Cat-->>CO: throw
+        end
+    end
+    CO-->>Caller: Invoice {number: "INV-n", items, total}
+```
+
 ```ts
 interface Invoice { number: string; items: { product: Product; qty: number }[]; total: number; }
 ```

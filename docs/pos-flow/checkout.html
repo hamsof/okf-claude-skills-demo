@@ -42,7 +42,23 @@ h1,h2,h3{line-height:1.25}h1{font-size:26px}
 <li>invoice <code>total</code> = sum of line values</li>
 <li>invoice number = <code>INV-&lt;n&gt;</code></li>
 </ol>
-<pre><code class="language-ts">interface Invoice { number: string; items: { product: Product; qty: number }[]; total: number; }
+<pre class="mermaid">sequenceDiagram
+    participant Caller
+    participant CO as checkout()
+    participant Cat as findProduct()
+
+    Caller-&gt;&gt;CO: checkout(items, n)
+    loop each {sku, qty}
+        CO-&gt;&gt;Cat: findProduct(sku)
+        alt known SKU
+            Cat--&gt;&gt;CO: Product
+            CO-&gt;&gt;CO: line = price * qty; total += line
+        else unknown SKU
+            Cat--&gt;&gt;CO: throw
+        end
+    end
+    CO--&gt;&gt;Caller: Invoice {number: &quot;INV-n&quot;, items, total}
+</pre><pre><code class="language-ts">interface Invoice { number: string; items: { product: Product; qty: number }[]; total: number; }
 </code></pre>
 <p>The <code>Invoice</code> shape is the <strong>contract</strong> every report reads — change it and you change the
 reports.</p>

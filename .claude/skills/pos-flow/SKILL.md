@@ -11,6 +11,15 @@ timestamp: 2026-06-18T00:00:00Z
 
 How a sale becomes an invoice in this sample POS. All code in `src/pos.ts`.
 
+```mermaid
+flowchart LR
+    Cart["cart<br/>{sku, qty}[]"] --> CO["checkout()"]
+    Cat[("catalog")] -->|findProduct| CO
+    CO --> Inv["Invoice<br/>{number, items, total}"]
+    Inv --> RP["salesByProduct"]
+    Inv --> RI["salesByInvoice"]
+```
+
 ## When to apply
 
 Read before touching the product catalog, pricing, or the `checkout()` function — or

@@ -41,7 +41,11 @@ this from a database).</p>
 </code></pre>
 <p><code>findProduct(sku)</code> looks a product up by SKU and <strong>throws</strong> on an unknown SKU — checkout
 relies on that to reject bad cart lines early.</p>
-<h2>See also</h2>
+<pre class="mermaid">flowchart TD
+    A[&quot;findProduct(sku)&quot;] --&gt; B{&quot;sku in catalog?&quot;}
+    B --&gt;|yes| C[&quot;return Product&quot;]
+    B --&gt;|no| D[&quot;throw — checkout rejects the cart line&quot;]
+</pre><h2>See also</h2>
 <ul>
 <li><a href="checkout.html">checkout.md</a> — consumes <code>findProduct</code> to build invoice lines</li>
 </ul>
